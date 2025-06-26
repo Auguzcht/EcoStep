@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <!-- Use direct path to the logo -->
-    <link rel="icon" type="image/svg+xml" href="/public/EcoStep_Logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/EcoStep_Logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="EcoStep - Innovative piezoelectric energy harvesting solution for sustainable energy generation from footsteps" />
     <meta name="keywords" content="piezoelectric, energy harvesting, green energy, sustainable technology, footstep energy, EcoStep" />
     <meta name="author" content="EcoStep Team" />
@@ -14,7 +14,7 @@
     <meta property="og:description" content="Convert footsteps into clean energy with our innovative piezoelectric harvesting technology" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ecostep-tau.vercel.app/" />
-    <meta property="og:image" content="/public/EcoStep_Logo.png" />
+    <meta property="og:image" content="/EcoStep_Logo.png" />
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://ecostep-tau.vercel.app/" />
@@ -31,9 +31,11 @@
         margin: 0;
         padding: 0;
         font-family: 'Roboto', sans-serif;
+        overflow-x: hidden;
       }
       #root {
         height: 100vh;
+        overflow-x: hidden;
       }
     </style>
   </head>
