@@ -43,7 +43,7 @@ img {
   height: auto;
 }
 
-/* Fix for MUI components that cause overflow */
+/* Fix for MUI components that cause overflow - MODIFIED to be less aggressive */
 [class*="MuiGrid-root"],
 [class*="MuiBox-root"],
 [class*="MuiContainer-root"],
@@ -51,10 +51,13 @@ img {
 [class*="MuiCard-root"] {
   max-width: 100% !important;
   box-sizing: border-box !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  /* Removed the margin and padding restrictions that were causing alignment issues */
+}
+
+/* Only apply overflow control to specific problem elements */
+.MuiBox-root[style*="overflow-x: auto"] {
+  max-width: 100%;
+  overflow-x: auto !important;
 }
 
 /* Dashboard specific fixes */
@@ -65,10 +68,17 @@ img {
   overflow-x: hidden !important;
 }
 
-/* Fix chart containers */
+/* Fix chart containers but don't affect layout */
 div[style*="position: relative"] {
   max-width: 100% !important;
+}
+
+/* Fix for Matrix display grid */
+div[style*="grid-template-columns: repeat(8, 1fr)"] {
   width: 100% !important;
+  max-width: 650px !important; /* Keep the maximum width */
+  margin: 0 auto !important; /* Center the grid */
+  overflow-x: auto !important; /* Allow scrolling on small screens */
 }
 
 /* Custom scrollbar styling */
@@ -94,6 +104,34 @@ input, button, textarea, select {
   font: inherit;
 }
 
+/* Fix for scrollable content boxes */
+.MuiBox-root[sx*="overflowY: \"auto\""],
+.MuiBox-root[style*="overflow-y: auto"] {
+  overflow-y: auto !important;
+  max-height: 100% !important;
+}
+
+/* Fix specifically for chart containers inside activities/system health panels */
+.MuiBox-root[height="500px"] .nivo-container,
+.MuiBox-root[height="590px"] .nivo-container {
+  overflow: visible !important; 
+  height: 100% !important;
+}
+
+/* Ensure fixed height elements allow internal scrolling */
+.MuiBox-root[style*="height: \"590px\""] {
+  height: auto !important;
+  min-height: 590px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Fix for recent activities list */
+.MuiBox-root[sx*="maxHeight"] {
+  overflow-y: auto !important;
+}
+
 /* Mobile optimization */
 @media (max-width: 768px) {
   html {
@@ -103,23 +141,71 @@ input, button, textarea, select {
   ::-webkit-scrollbar {
     width: 6px;
   }
+  
+  /* Proper handling for mobile grid layouts */
+  .MuiBox-root[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  /* Better handle overflow in mobile */
+  .MuiBox-root[height="500px"],
+  .MuiBox-root[height="590px"],
+  .MuiBox-root[height="420px"] {
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 400px !important;
+  }
 }
 
-/* Medium screens */
+/* Medium screens - more specific selectors to avoid conflicts */
 @media (max-width: 1200px) {
   .dashboard-grid {
     grid-template-columns: 1fr !important;
   }
+  
+  /* Target specific dashboard grid sections */
+  .MuiBox-root[style*="display: grid"][style*="gridTemplateColumns"] {
+    display: grid;
+    grid-template-columns: 1fr !important;
+  }
 }
 
-/* Responsive layout fixes */
-@media (max-width: 1400px) {
-  [class*="Dashboard_grid"] {
-    grid-template-columns: 1fr !important;
+/* Larger screens - maintain grid layouts where possible */
+@media (min-width: 1201px) {
+  /* Restore dashboard grid layouts on larger screens */
+  .MuiBox-root[style*="gridTemplateColumns: { xs: \"1fr\", lg: \"2fr 1.2fr 1.5fr\" }"] {
+    grid-template-columns: 2fr 1.2fr 1.5fr !important;
   }
   
-  /* Make the main content layout responsive */
-  [class*="Box-root"] [style*="display: grid"] {
-    grid-template-columns: 1fr !important;
+  /* Restore data bars grid on larger screens */
+  .MuiBox-root[style*="gridTemplateColumns: { xs: \"1fr\", sm: \"repeat(2, 1fr)\", md: \"repeat(4, 1fr)\" }"] {
+    grid-template-columns: repeat(4, 1fr) !important;
   }
+}
+
+/* Fix for the Matrix grid specific to EcoStep */
+.MuiBox-root[style*="display: grid"][style*="gridTemplateColumns: \"repeat(8, 1fr)\""] {
+  width: 650px !important;
+  height: 650px !important;
+  margin: 0 auto !important;
+  overflow: auto !important;
+}
+
+/* Fix chart containers */
+.MuiBox-root[style*="height: \"350px\""][style*="width: \"100%\""] {
+  height: 350px !important;
+  width: 100% !important;
+  overflow: visible !important; /* Allow charts to render properly */
+}
+
+/* Fix for Nivo charts specifically */
+.nivo-container {
+  overflow: visible !important; /* Prevent chart labels from being cut off */
+}
+
+/* Fix for recent activities list and system health boxes */
+.MuiBox-root[sx*="overflowY: \"auto\""],
+.MuiBox-root[style*="overflow-y: auto"] {
+  overflow-y: auto !important;
 }
