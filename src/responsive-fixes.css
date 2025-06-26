@@ -1,0 +1,71 @@
+/* Additional responsive fixes for deployed version */
+
+/* Fix for the "zoomed in" appearance on deployment */
+html, body {
+  zoom: 1;
+  -moz-transform: scale(1);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(1);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(1);
+  -webkit-transform-origin: 0 0;
+  transform: scale(1);
+  transform-origin: 0 0;
+  overflow-x: hidden;
+}
+
+/* Fix container sizes */
+.MuiContainer-root,
+.MuiBox-root,
+.MuiGrid-root {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Make sure the matrix stays within bounds */
+div[style*="grid-template-columns: repeat(8, 1fr)"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  padding: 10px !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .MuiBox-root[style*="display: flex"][style*="justify-content: space-between"] {
+    flex-direction: column !important;
+  }
+  
+  .MuiBox-root[style*="display: grid"][style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Adjust the navigation buttons */
+  .MuiBox-root[display="flex"][gap="4"] {
+    flex-wrap: wrap;
+  }
+  
+  /* Adjust font sizes */
+  body {
+    font-size: 14px !important;
+  }
+  
+  h1, h2, h3, .MuiTypography-h1, .MuiTypography-h2, .MuiTypography-h3 {
+    font-size: 90% !important;
+  }
+}
+
+/* Fix for charts */
+.nivo-wrapper,
+.nivo-container,
+canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Make charts responsive */
+@media (max-width: 1200px) {
+  canvas {
+    max-height: 300px !important;
+  }
+}

@@ -5,14 +5,19 @@ import { ColorModeContext, tokens } from './theme';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'; 
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { motion } from 'framer-motion';
+// Import the logo directly
+import logoPath from '../public/EcoStep_Logo.png';
 
-const TopBar = () => {
+const TopBar = ({ logoPath: propLogoPath }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [isHovered, setIsHovered] = useState(false);
+
+  // Use the logo from props if provided, otherwise use the imported one
+  const finalLogoPath = propLogoPath || logoPath;
 
   return (
     <Box 
@@ -39,7 +44,7 @@ const TopBar = () => {
             rotate: 5,
             transition: { duration: 0.2 }
           }}
-          src="/EcoStep/public/EcoStep_Logo.png"
+          src={finalLogoPath}
           alt="EcoStep Logo"
           sx={{ 
             width: 40, 

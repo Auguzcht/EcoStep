@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
+// Import the responsive fixes
+import './responsive-fixes.css';
 
 // Get the root element
 const rootElement = document.getElementById('root');
