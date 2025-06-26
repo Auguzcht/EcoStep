@@ -6,13 +6,18 @@ import { voltageData, dailyVoltageAverages, weeklyVoltageData } from './SampleLi
 const LineChart = ({ 
     isDashboard = false, 
     timePeriod = 'day', 
-    timeAxisLabel = 'Time (Days)' 
+    timeAxisLabel = 'Time (Days)',
+    data = null // Accept data from ThingSpeak API
 }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
     // Function to get the appropriate data based on time period
     const getData = () => {
+        // If we have API data, use it
+        if (data) return data;
+        
+        // Otherwise fall back to sample data
         switch(timePeriod) {
             case 'hour': return voltageData; // Your detailed hourly data by day
             case 'day': return dailyVoltageAverages; // Your daily averages

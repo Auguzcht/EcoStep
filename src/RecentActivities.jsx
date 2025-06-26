@@ -94,7 +94,7 @@ const RecentActivities = () => {
             <Box 
                 display="flex" 
                 flexDirection="column" 
-                gap="15px"
+                gap="10px"
                 sx={{ 
                     overflowY: "auto", 
                     overflowX: "hidden",
@@ -127,16 +127,17 @@ const RecentActivities = () => {
                         display="flex" 
                         justifyContent="space-between" 
                         alignItems="center"
-                        p="10px"
+                        p="15px" // Reduced padding from 20px to 15px
                         borderRadius="8px"
                         width="100%"
                         maxWidth="100%"
-                        height="80px" // Changed from 100px to 80px
+                        height="80px" // Changed from 100px to 80px to fit more items in view
                         boxSizing="border-box"
                         sx={{
                             minWidth: 0,
                             transition: 'background-color 0.2s',
-                            flexShrink: 0 // Prevent items from shrinking
+                            flexShrink: 0, // Prevent items from shrinking
+                            mb: 0.5 // Add small margin bottom for separation
                         }}
                     >
                         <Box 
@@ -152,14 +153,14 @@ const RecentActivities = () => {
                             <Box 
                                 component={motion.div}
                                 whileHover={{ scale: 1.1 }}
-                                width="38px" 
-                                height="38px" 
+                                width="32px" // Reduced from 38px to 32px
+                                height="32px" // Reduced from 38px to 32px
                                 borderRadius="50%" 
                                 backgroundColor={item.color}
                                 display="flex"
                                 alignItems="center"
                                 justifyContent="center"
-                                fontSize="16px"
+                                fontSize="14px" // Reduced from 16px to 14px
                                 flexShrink={0}
                                 sx={{ boxShadow: `0 2px 10px ${item.color}80` }}
                             >
@@ -176,7 +177,7 @@ const RecentActivities = () => {
                                     variant="body1" 
                                     color={colors.grey[100]} 
                                     fontWeight="600" 
-                                    fontSize="14px"
+                                    fontSize="13px" // Reduced from 14px to 13px
                                     noWrap
                                     title={item.title}
                                     sx={{ 
@@ -190,7 +191,7 @@ const RecentActivities = () => {
                                 <Typography 
                                     variant="caption" 
                                     color={colors.grey[300]} 
-                                    fontSize="12px"
+                                    fontSize="11px" // Reduced from 12px to 11px
                                     noWrap
                                     title={item.subtitle}
                                     sx={{ 

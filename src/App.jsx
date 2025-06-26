@@ -8,7 +8,8 @@ import { ColorModeContext, useMode } from './theme.js';
 import TopBar from './TopBar.jsx';  
 import Dashboard from './Dashboard.jsx';
 import Matrix from './Matrix.jsx';
-
+// Import the thingspeakService to initialize it
+import './services/thingspeakService.js';
 
 const App = () => {
   const [theme, colorMode] = useMode();
