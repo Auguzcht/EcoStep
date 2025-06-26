@@ -14,35 +14,40 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Fix container sizes */
+/* Fix container sizes without removing margins/padding */
 .MuiContainer-root,
 .MuiBox-root,
 .MuiGrid-root {
   max-width: 100% !important;
-  overflow-x: hidden !important;
+  /* Removed padding/margin resets to maintain layout */
 }
 
 /* Make sure the matrix stays within bounds */
 div[style*="grid-template-columns: repeat(8, 1fr)"] {
   width: 100% !important;
-  max-width: 100% !important;
+  max-width: 650px !important;
+  margin: 0 auto !important;
   overflow-x: auto !important;
-  padding: 10px !important;
 }
 
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
+  /* Target flex containers specifically */
   .MuiBox-root[style*="display: flex"][style*="justify-content: space-between"] {
     flex-direction: column !important;
+    gap: 16px !important;
   }
   
-  .MuiBox-root[style*="display: grid"][style*="grid-template-columns"] {
+  /* Target grid containers specifically */
+  .MuiBox-root[style*="display: grid"][style*="gridTemplateColumns"] {
     grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
   
   /* Adjust the navigation buttons */
-  .MuiBox-root[display="flex"][gap="4"] {
+  .MuiBox-root[style*="display: flex"][style*="gap: 4"] {
     flex-wrap: wrap;
+    justify-content: center !important;
   }
   
   /* Adjust font sizes */
@@ -53,6 +58,12 @@ div[style*="grid-template-columns: repeat(8, 1fr)"] {
   h1, h2, h3, .MuiTypography-h1, .MuiTypography-h2, .MuiTypography-h3 {
     font-size: 90% !important;
   }
+  
+  /* Ensure mobile padding */
+  .MuiBox-root {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
 }
 
 /* Fix for charts */
@@ -60,12 +71,19 @@ div[style*="grid-template-columns: repeat(8, 1fr)"] {
 .nivo-container,
 canvas {
   max-width: 100% !important;
-  height: auto !important;
 }
 
 /* Make charts responsive */
 @media (max-width: 1200px) {
   canvas {
     max-height: 300px !important;
+  }
+}
+
+/* Center content on larger screens */
+@media (min-width: 1201px) {
+  .MuiBox-root[style*="margin: auto"] {
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
