@@ -17,7 +17,7 @@ const App = () => {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router basename="/ecostep">
+        <Router basename="/EcoStep">
           <Box display="flex" flexDirection="column" minHeight="100vh">
             <TopBar />
             <Box component="main" flexGrow={1} p={2}>
@@ -33,7 +33,7 @@ const App = () => {
   );
 };
 
-// Render the app
+// Render the appx
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(<App />);

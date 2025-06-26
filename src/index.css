@@ -1,18 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Serif+Hentaigana:wght@200..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
-html, body, #root, .app, .content {
+/* Reset and base styles */
+*, *::before, *::after {
+  box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
   height: 100%;
   width: 100%;
   font-family: "Roboto", sans-serif;
+  font-size: 16px;  
+  line-height: 1.5;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  max-width: 100vw; /* Prevent content from exceeding viewport width */
+  overflow-x: hidden; /* Prevent horizontal scrolling at root level */
+}
+
+.app, .content {
+  height: 100%;
+  width: 100%; 
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .app {
   display: flex;
   position: relative;
+  flex-direction: column;
 }
 
+/* Make all images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for MUI components that cause overflow */
+[class*="MuiGrid-root"],
+[class*="MuiBox-root"],
+[class*="MuiContainer-root"],
+[class*="MuiPaper-root"],
+[class*="MuiCard-root"] {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Dashboard specific fixes */
+[data-grid-row], 
+[data-grid-column] {
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix chart containers */
+div[style*="position: relative"] {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Custom scrollbar styling */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -21,8 +82,44 @@ html, body, #root, .app, .content {
 
 ::-webkit-scrollbar-thumb {
   background: #888;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Ensure proper box sizing for all elements */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Responsive layout fixes */
+@media (max-width: 1400px) {
+  [class*="Dashboard_grid"] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Make the main content layout responsive */
+  [class*="Box-root"] [style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+  }
 }
