@@ -517,8 +517,8 @@ const Dashboard = () => {
                             component={motion.div}
                             whileHover={{ scale: 1.05 }}
                         >
-                            <Typography variant="h6" color={colors.grey[400]}>Average</Typography>
-                            <Typography variant="h6" color={colors.greenAccent[400]} fontWeight="600">
+                            <Typography variant="h4" color={colors.grey[600]} fontWeight="600">Average</Typography>
+                            <Typography variant="h4" color={colors.greenAccent[400]} fontWeight="600">
                                 {loading ? "..." : `${(liveData.voltage * 0.7).toFixed(2)} V`}
                             </Typography>
                         </Box>
@@ -527,8 +527,8 @@ const Dashboard = () => {
                             component={motion.div}
                             whileHover={{ scale: 1.05 }}
                         >
-                            <Typography variant="body2" color={colors.grey[300]}>Min Voltage</Typography>
-                            <Typography variant="h6" color={colors.greenAccent[400]} fontWeight="600">
+                            <Typography variant="h4" color={colors.grey[600]} fontWeight="600">Min Voltage</Typography>
+                            <Typography variant="h4" color={colors.greenAccent[400]} fontWeight="600">
                                 {loading ? "..." : `${(liveData.voltage * 0.3).toFixed(2)} V`}
                             </Typography>
                         </Box>
